@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeAnt AI</title>         
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #1f1f1f;
+            color: #fff;
+            height: 100vh;
+            padding: 20px;
+            float: left;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar ul li img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .sidebar ul li a:hover {
+            color: #1e90ff;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+
+        .main-content header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .main-content header input {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .main-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .main-content table thead {
+            background-color: #1e90ff;
+            color: #fff;
+        }
+
+        .main-content table th, 
+        .main-content table td {
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .main-content table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Footer Button Styles */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f1f1f1;
+            padding: 10px;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .footer-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .main-content header {
+                flex-direction: column;
+            }
+
+            .main-content header input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>CodeAnt AI</h2>
+            <ul>
+                <li><img src="repository-logo.png" alt="Repo Logo"><a href="#" onclick="showRepositories()">Repositories</a></li>
+                <li><img src="ai-logo.png" alt="AI Logo"><a href="#">AI Code Review</a></li>
+                <li><img src="cloud-logo.png" alt="Cloud Logo"><a href="#">Cloud Security</a></li>
+                <li><a href="#">How to Use</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><img src="support-logo.png" alt="Support Logo"><a href="#">Support</a></li>
+                <li><img src="logout-logo.png" alt="Logout Logo"><a href="#">Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <section class="main-content">
+            <header>
+                <input type="text" placeholder="Search Repositories">
+                <button onclick="showAddRepositoryForm()">Add Repository</button>
+            </header>
+            <div id="repo-container">
+                <!-- Dynamic repository content will be displayed here -->
+            </div>
+        </section>
+
+        <!-- Add Repository Form (Hidden by default) -->
+        <div id="add-repository-form" style="display: none; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <h3>Add New Repository</h3>
+            <form>
+                <input type="text" placeholder="Repository Name" required><br><br>
+                <input type="text" placeholder="Repository Language" required><br><br>
+                <input type="text" placeholder="Repository Size" required><br><br>
+                <button type="submit">Add Repository</button>
+            </form>
+            <button onclick="closeAddRepositoryForm()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <button class="footer-button" id="support">Support</button>
+        <button class="footer-button" id="logout">Logout</button>
+    </div>
+
+    <script>
+        // Function to display all repositories
+        function showRepositories() {
+            const repoContainer = document.getElementById('repo-container');
+            repoContainer.innerHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Repository</th>
+                            <th>Language</th>
+                            <th>Size</th>
+                            <th>Last Updated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>design-system</td>
+                            <td>React</td>
+                            <td>7,320 KB</td>
+                            <td>Updated 1 day ago</td>
+                        </tr>
+                        <tr>
+                            <td>codeant-ci-app</td>
+                            <td>Javascript</td>
+                            <td>5,871 KB</td>
+                            <td>Updated 2 days ago</td>
+                        </tr>
+                        <tr>
+                            <td>analytics-dashboard</td>
+                            <td>Python</td>
+                            <td>4,521 KB</td>
+                            <td>Updated 5 days ago</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+        }
+
+        // Function to show the Add Repository form
+        function showAddRepositoryForm() {
+            document.getElementById('add-repository-form').style.display = 'block';
+        }
+
+        // Function to hide the Add Repository form
+        function closeAddRepositoryForm() {
+            document.getElementById('add-repository-form').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

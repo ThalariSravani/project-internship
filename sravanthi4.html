@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeAnt AI Login</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            display: flex;
+            width: 800px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-panel {
+            width: 40%;
+            background-color: #f0f0f0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .right-panel {
+            width: 60%;
+            padding: 40px;
+        }
+
+        .stats-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .stats-card p {
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .stats-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        .issues-fixed {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .issues-fixed span {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .percentage-up {
+            background-color: lightgreen;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin-top: 5px;
+        }
+
+        .right-panel h1 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .deployment-options {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .saas-button,
+        .self-hosted-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .saas-button {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .saas-button.active {
+            background-color: #0056b3; /* Darker blue for active state */
+        }
+
+        .self-hosted-button {
+            background-color: #ccc;
+            color: #333;
+        }
+
+        .self-hosted-button.active {
+            background-color: #007bff; 
+            color: #fff; 
+        }
+
+        .social-login button {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .social-login button img {
+            margin-right: 10px;
+            width: 20px; /* Adjust image size as needed */
+        }
+
+        .social-login button:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Hide self-hosted options initially */
+        .self-hosted-options {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="left-panel">
+            <div class="stats-card">
+                <p>AI to Detect & Autofix Bad Code</p>
+                <ul>
+                    <li>30+ Language Support</li>
+                    <li>10K+ Developers</li>
+                    <li>100K+ Hours Saved</li>
+                </ul>
+            </div>
+            <div class="issues-fixed">
+                <p>Issues Fixed</p>
+                <span>500K+</span>
+                <div class="percentage-up">↑14%</div>
+                <p>This week</p>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <h1>Welcome to CodeAnt AI</h1>
+            <div class="deployment-options">
+                <button class="saas-button active">SAAS</button>
+                <button class="self-hosted-button">Self Hosted</button>
+            </div>
+            <div class="social-login">
+                <div class="saas-options">
+                    <button class="github-button">
+                        <img src="github-logo.svg" alt="Github Logo"> Sign in with Github
+                    </button>
+                    <button class="bitbucket-button">
+                        <img src="bitbucket-logo.svg" alt="Bitbucket Logo"> Sign in with Bitbucket
+                    </button>
+                    <button class="azure-button">
+                        <img src="azure-logo.svg" alt="Azure Logo"> Sign in with Azure Devops
+                    </button>
+                    <button class="gitlab-button">
+                        <img src="gitlab-logo.svg" alt="Gitlab Logo"> Sign in with GitLab
+                    </button>
+                </div>
+                <div class="self-hosted-options">
+                    <button class="local-button">Sign in with Local Account</button>
+                    <button class="keycloak-button">Sign in with Keycloak</button>
+                </div>
+            </div>
+            <p>By signing up you agree to the <a href="#">Privacy Policy</a>.</p>
+        </div>
+    </div>
+
+    <script>
+        const saasButton = document.querySelector('.saas-button');
+        const selfHostedButton = document.querySelector('.self-hosted-button');
+        const saasOptions = document.querySelector('.saas-options');
+        const selfHostedOptions = document.querySelector('.self-hosted-options');
+
+        saasButton.addEventListener('click', () => {
+            saasButton.classList.add('active');
+            selfHostedButton.classList.remove('active');
+            saasOptions.style.display = 'block';
+            selfHostedOptions.style.display = 'none';
+        });
+
+        selfHostedButton.addEventListener('click', () => {
+            saasButton.classList.remove('active');
+            selfHostedButton.classList.add('active');
+            saasOptions.style.display = 'none';
+            selfHostedOptions.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
